@@ -3,4 +3,11 @@ from django.http import HttpResponse
 
 def index(request):
     args = {}
-    return render(request, 'question/base.html', args)
+    args['questions'] = [1,2,3,4]
+    return render(request, 'question/index.html', args)
+
+
+def ask(request):
+    args = {}
+    # args['questions'] = [1,2,3,4]
+    return render(request, 'question/ask.html', args)
