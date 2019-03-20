@@ -1,0 +1,244 @@
+{% load static%}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand col-lg-5">AskMe</a>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="What is your question?" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ask</button>
+      </form>
+      <div class="btn-group" role="group">
+        <img src="{% static 'img/1.jpg' %}" class="mr-3" alt="..." width="35" height="45">
+        <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle btn-outline-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Magomed Chahkiev
+        </button>
+        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+          <a class="dropdown-item" href="#">Settings</a>
+          <a class="dropdown-item" href="#">Logout</a>
+        </div>
+      </div>
+    </nav>
+    <!-- NAVBAR -->
+
+    <!-- New questions && Hot questions -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <h4>New Questions</h4>
+        </div>
+        <div class="col-lg-8">
+          <a href="#"><h4>Hot questions</h4></a>
+        </div>
+      </div>
+    </div>
+    <!-- New questions && Hot questions -->
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+          <br>
+          <!-- {% block content %} -->
+
+          <!--FakeQuestion_1 -->
+          <div class="container question">
+            <div class="row">
+              <br>
+              <div class="col-lg-2">
+                <div class="col">
+                  <img src="{% static 'img/jobs.jpg' %}" class="mr-3" alt="..." width="80" height="100">
+                </div>
+                <br>
+                <div class="col">
+                  <a href="#">5</a>
+                </div>
+              </div>
+              <div class="col-lg-10">
+                <div class="col">
+                  <a href=""><h3>How to make travel easier?</h3></a>
+                </div>
+                <div class="col">
+                  <h4>The Boring Company Илона Маска открыла первый подземный тоннель — под Лос-Анджелесом...</h4>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-lg-5 text-center">
+                    <a href=""><h5>Answers(3)</h5></a>
+                  </div>
+                  <div class="col-lg7">
+                    <div class="row">
+                      <h5>Tags:&nbsp;&nbsp;</h5>
+                      <a href=""><h5>BoringCompany,&nbsp;&nbsp;</h5></a>
+                      <a href=""><h5>Tesla &nbsp;</h5></a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!--FakeQuestion_1 -->
+
+          <!--FakeQuestion_2 -->
+          <div class="container question">
+            <div class="row">
+              <br>
+              <div class="col-lg-2">
+                <div class="col">
+                  <img src="{% static 'img/jobs.jpg' %}" class="mr-3" alt="..." width="80" height="100">
+                </div>
+                <br>
+                <div class="col">
+                  <a href="#">5</a>
+                </div>
+              </div>
+              <div class="col-lg-10">
+                <div class="col">
+                  <a href=""><h3>How to make travel easier?</h3></a>
+                </div>
+                <div class="col">
+                  <h4>The Boring Company Илона Маска открыла первый подземный тоннель — под Лос-Анджелесом...</h4>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-lg-5 text-center">
+                    <a href=""><h5>Answers(3)</h5></a>
+                  </div>
+                  <div class="col-lg7">
+                    <div class="row">
+                      <h5>Tags:&nbsp;&nbsp;</h5>
+                      <a href=""><h5>BoringCompany,&nbsp;&nbsp;</h5></a>
+                      <a href=""><h5>Tesla &nbsp;</h5></a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!--FakeQuestion_2 -->
+
+          <!--FakeQuestion_3 -->
+          <div class="container question">
+            <div class="row">
+              <br>
+              <div class="col-lg-2">
+                <div class="col">
+                  <img src="{% static 'img/jobs.jpg' %}" class="mr-3" alt="..." width="80" height="100">
+                </div>
+                <br>
+                <div class="col">
+                  <a href="#">5</a>
+                </div>
+              </div>
+              <div class="col-lg-10">
+                <div class="col">
+                  <a href=""><h3>How to make travel easier?</h3></a>
+                </div>
+                <div class="col">
+                  <h4>The Boring Company Илона Маска открыла первый подземный тоннель — под Лос-Анджелесом...</h4>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-lg-5 text-center">
+                    <a href=""><h5>Answers(3)</h5></a>
+                  </div>
+                  <div class="col-lg7">
+                    <div class="row">
+                      <h5>Tags:&nbsp;&nbsp;</h5>
+                      <a href=""><h5>BoringCompany,&nbsp;&nbsp;</h5></a>
+                      <a href=""><h5>Tesla &nbsp;</h5></a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!--FakeQuestion_3 -->
+
+          <!--{% endblock %} -->
+
+          <!--Кнопки переключения страниц -->
+          <div class="container">
+            <div class="row">
+              <div class="col-ld-6">
+                <div class="row">
+              <div class="col page_number">
+                <a href="#"><h6>1</h6></a>
+              </div>
+              <div class="col page_number">
+                <a href="#"><h6>2</h6></a>
+              </div>
+              <div class="col page_number">
+                  <a href="#"><h6>3</h6></a>
+              </div>
+              <div class="col page_number">
+                  <a href="#"><h6>...</h6></a>
+              </div>
+              <div class="col page_number">
+                  <a href="#"><h6>51</h6></a>
+              </div>
+              </div>
+              </div>
+            </div>
+          </div>
+          <!--Кнопки переключения страниц -->
+
+        </div>
+        <div class="col-lg-3">
+          <br>
+          <!--Popular questions -->
+          <div class="container">
+          <div class="col">
+            <h4>Popular Tags</h4>
+            <hr class="orange accent-2 mt-0 d-inline-block mx-auto" style="width: 155px;"></hr>
+            <il style="text-align: left;">
+              <a href=""><h2><font color="#e04d28">Web</font></h2></a>
+              <a href=""><h3><font color="green">Django</font></h3></a>
+              <a href=""><h4><font color="blue">Framework</font></h4></a>
+              <a href=""><h5><font color="#2dce7d">Python</font></h5></a>
+              <a href=""><h6><font color="#e0c484">TypeScript</font></h6></a>
+            </il>
+          </div>
+          </div>
+          <!--Popular questions -->
+          <br><br>
+          <!--Best members -->
+          <div class="container">
+            <div class="col">
+              <h4>Best Members</h4>
+              <hr class="orange accent-2 mt-0 d-inline-block mx-auto" style="width: 155px;"></hr>
+              <il style="text-align: left;">
+                <a href=""><h5>Anonymous</h5></a>
+                <a href=""><h5>Mister</h5></a>
+                <a href=""><h5>Coder</h5></a>
+                <a href=""><h5>FrontendMan</h5></a>
+                <a href=""><h5>AAA</h5></a>
+              </il>
+            </div>
+          </div>
+          <!--Best members -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  </body>
+</html>

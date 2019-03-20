@@ -1,0 +1,24 @@
+.question {
+ background: #FAF5F5;
+ border-color: grey;
+ padding-top: 10px;
+ margin-bottom: 20px;
+ outline: 2px solid #000; /* Чёрная рамка */
+}
+
+.page_number {
+ height: 20px;
+ width: 40px;
+ background: #FAF5F5;
+ border-color: grey;
+ /* padding-top: 10px;
+ margin-bottom: 20px; */
+ margin-left: 15px;
+ margin-right: 15px;
+ outline: 2px solid #000; /* Чёрная рамка */
+}
+
+.page_number a{
+  /* color: blue; */
+  text-align: center;
+}
