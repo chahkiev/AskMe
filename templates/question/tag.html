@@ -1,0 +1,43 @@
+{% extends "question/base.html" %}
+{% load static %}
+
+{% block content%}
+    <!-- New questions && Hot questions -->
+    <div class="container">
+        <div class="row">
+                <h4>TAG: &nbsp;</h4>
+                <a href="#"><h4>{{  tag }}</h4></a>
+        </div>
+    </div>
+    <!-- New questions && Hot questions -->
+
+    {% for question in questions %}
+        {% include 'question/question_item.html' %}
+    {% endfor %}
+
+    <!--Кнопки переключения страниц -->
+    <div class="container">
+      <div class="row">
+        <div class="col-ld-6">
+          <div class="row">
+        <div class="col page_number">
+          <a href="#"><h6>1</h6></a>
+        </div>
+        <div class="col page_number">
+          <a href="#"><h6>2</h6></a>
+        </div>
+        <div class="col page_number">
+            <a href="#"><h6>3</h6></a>
+        </div>
+        <div class="col page_number">
+            <a href="#"><h6>...</h6></a>
+        </div>
+        <div class="col page_number">
+            <a href="#"><h6>51</h6></a>
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <!--Кнопки переключения страниц -->
+{% endblock%}
