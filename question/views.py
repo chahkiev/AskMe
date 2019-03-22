@@ -38,4 +38,5 @@ def settings(request):
 def question(request,question):
     args = {}
     args['questions'] = [1,2,3,4]
+    args['answers'] = [1,2]
     return render(request, 'question/question.html', args)

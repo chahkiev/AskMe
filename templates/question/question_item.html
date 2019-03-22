@@ -8,9 +8,42 @@
         <img src="{% static 'img/jobs.jpg' %}" class="mr-3" alt="..." width="80" height="100">
       </div>
       <br>
-      <div class="col">
+      <!-- <div class="col">
+
+        <div class="row">
+        <img src="{% static 'img/dislike.svg' %}" width="25" height="25">
         <a href="#">5</a>
+        <img src="{% static 'img/like.svg' %}" width="25" height="25">
+</div>
+      </div> -->
+      <div class="container">
+          <div class="row">
+            <div class="col likes">
+             <button type="button" class="btn btn-success btn-sm" data-id="{{ question.id }}" data-type="question" data-action="like" title="Like">
+                 <span class="glyphicon glyphicon-thumbs-up"></span>
+                 <span data-count="like">5</span>
+             </button>
+
+             <button type="button" class="btn btn-danger btn-sm" data-id="{{ question.id }}" data-type="question" data-action="dislike" title="Dislike">
+                 <span class="glyphicon glyphicon-thumbs-down"></span>
+                 <span data-count="dislike">3</span>
+             </button>
+           </div>
+          </div>
       </div>
+    <!-- <div class="likes centeder">
+     <button type="button" class="btn btn-success btn-sm" data-id="{{ question.id }}" data-type="question" data-action="like" title="Like">
+         <span class="glyphicon glyphicon-thumbs-up"></span>
+         <span data-count="like">5</span>
+     </button>
+
+     <button type="button" class="btn btn-danger btn-sm" data-id="{{ question.id }}" data-type="question" data-action="dislike" title="Dislike">
+         <span class="glyphicon glyphicon-thumbs-down"></span>
+         <span data-count="dislike">3</span>
+     </button>
+   </div> -->
+
+
     </div>
     <div class="col-lg-10">
       <div class="col">
@@ -24,7 +57,7 @@
         <div class="col-lg-5 text-center">
           <a href=""><h5>Answers(3)</h5></a>
         </div>
-        <div class="col-lg7">
+        <div class="col-lg-7">
           <div class="row">
             <h5>Tags:&nbsp;&nbsp;</h5>
             <a href=""><h5>BoringCompany,&nbsp;&nbsp;</h5></a>

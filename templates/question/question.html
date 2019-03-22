@@ -15,12 +15,24 @@
     </div>
     <!-- New questions && Hot questions -->
 
-    
+
         {% include 'question/question_item.html' %}
+        <hr class="orange accent-2 mt-0 d-inline-block mx-auto" style="width:830px;"></hr>
 
+        {% for answer in answers %}
+            {% include 'question/answer_item.html' %}
+        {% endfor %}
 
+        <hr class="orange accent-2 mt-0 d-inline-block mx-auto" style="width:830px;"></hr>
+
+        <form>
+          <div class="form-group">
+              <textarea cols="90" rows="5" placeholder="Enter yout answer"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Answer</button>
+      </form>
     <!--Кнопки переключения страниц -->
-    <div class="container">
+    <!-- <div class="container">
       <div class="row">
         <div class="col-ld-6">
           <div class="row">
@@ -42,6 +54,6 @@
         </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!--Кнопки переключения страниц -->
 {% endblock%}
