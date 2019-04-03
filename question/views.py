@@ -1,11 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.http import HttpResponse
 
+from django.core.paginator import Paginator
 
-def index(request):
+
+def index(request, page_number=1):
     args = {}
-    args['questions'] = [1,2,3,4]
-    return render(request, 'question/index.html', args)
+    all_questions = [0,1,2,3,4,5,6,7,8,9]
+    questions_on_page = Paginator(all_questions, 3)
+    args['questions_on_page'] = questions_on_page.page(page_number)
+    args['current_page'] = page_number
+    return render_to_response('question/index.html', args)
+
 
 
 def ask(request):
