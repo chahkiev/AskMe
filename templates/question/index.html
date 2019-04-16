@@ -15,33 +15,65 @@
     </div>
     <!-- New questions && Hot questions -->
 
-    {% for question in questions %}
+    {% for question in questions_on_page %}
         {% include 'question/question_item.html' %}
     {% endfor %}
 
-    <!--Кнопки переключения страниц -->
+
+    <div class="col">
+      <a>Всего страниц: {{ questions_on_page.paginator.num_pages }}</a>
+    </div>
     <div class="container">
+      <div class="row">
+        <ul class="paginator">
+          {% if questions_on_page.has_previous%}
+            <li class="arrow"><a href="/{{ questions_on_page.previous_page_number}}">&laquo;</a></li>
+          {% else %}
+            <li class="unavailable"><a href="">&laquo;</a></li>
+          {% endif %}
+
+          <!-- {% for page in questions_on_page.paginator.page_range %}
+            {% if page == questions_on_page.number %}
+              <li class="current"><a href="/{{ page }}">{{ page }}</a></li>
+            {% else %}
+              <li><a href="/{{ page }}">{{ page }}</a></li>
+            {% endif %}
+          {% endfor %} -->
+
+            <li class="current_page"><a href="">{{ current_page}}</a></li>
+
+            {% if questions_on_page.has_next%}
+              <li class="arrow"><a href="/{{ questions_on_page.next_page_number}}">&raquo;</a></li>
+            {% else %}
+              <li class="unavailable"><a href="">&raquo;</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+
+    <!-- Кнопки переключения страниц -->
+    <!-- <div class="container">
       <div class="row">
         <div class="col-ld-6">
           <div class="row">
-        <div class="col page_number">
-          <a href="#"><h6>1</h6></a>
-        </div>
-        <div class="col page_number">
-          <a href="#"><h6>2</h6></a>
-        </div>
-        <div class="col page_number">
-            <a href="#"><h6>3</h6></a>
-        </div>
-        <div class="col page_number">
-            <a href="#"><h6>...</h6></a>
-        </div>
-        <div class="col page_number">
-            <a href="#"><h6>51</h6></a>
-        </div>
-        </div>
+            <div class="col page_number">
+              <a href="#"><h6>1</h6></a>
+            </div>
+              <div class="col page_number">
+              </div>
+              <div class="col page_number">
+                <a href="#"><h6>3</h6></a>
+              </div>
+              <div class="col page_number">
+                <a href="#"><h6>...</h6></a>
+              </div>
+              <div class="col page_number">
+                <a href="#"><h6>51</h6></a>
+              </div>
+            </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!--Кнопки переключения страниц -->
+
 {% endblock%}

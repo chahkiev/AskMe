@@ -26,5 +26,6 @@ urlpatterns = [
     path('ask/', views.ask, name='ask'),
     url(r'^tag/(?P<tag>.*)/$', views.tag, name='tag'),
     url(r'^question/(?P<question>.*)/$', views.question, name='question'),
+    url(r'^(\d+)/$', views.index, name='index'),
 
 ]
