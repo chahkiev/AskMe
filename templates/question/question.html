@@ -15,45 +15,65 @@
     </div>
     <!-- New questions && Hot questions -->
 
-
         {% include 'question/question_item.html' %}
         <hr class="orange accent-2 mt-0 d-inline-block mx-auto" style="width:830px;"></hr>
-
-        {% for answer in answers %}
-            {% include 'question/answer_item.html' %}
-        {% endfor %}
-
-        <hr class="orange accent-2 mt-0 d-inline-block mx-auto" style="width:830px;"></hr>
-
         <form>
           <div class="form-group">
               <textarea cols="90" rows="5" placeholder="Enter yout answer"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Answer</button>
       </form>
-    <!--Кнопки переключения страниц -->
-    <!-- <div class="container">
-      <div class="row">
-        <div class="col-ld-6">
-          <div class="row">
-        <div class="col page_number">
-          <a href="#"><h6>1</h6></a>
-        </div>
-        <div class="col page_number">
-          <a href="#"><h6>2</h6></a>
-        </div>
-        <div class="col page_number">
-            <a href="#"><h6>3</h6></a>
-        </div>
-        <div class="col page_number">
-            <a href="#"><h6>...</h6></a>
-        </div>
-        <div class="col page_number">
-            <a href="#"><h6>51</h6></a>
-        </div>
-        </div>
-        </div>
-      </div>
-    </div> -->
-    <!--Кнопки переключения страниц -->
+      </br>
+      <hr class="orange accent-2 mt-0 d-inline-block mx-auto" style="width:830px;"></hr>
+
+        {% for answer in answers %}
+            {% include 'question/answer_item.html' %}
+        {% endfor %}
+
+
+
 {% endblock%}
+
+
+{% block footer %}
+    <div class="col">
+        <a>Страниц с ответами: {{ answers.paginator.num_pages }}</a>
+    </div>
+    <br>
+    {% if answers.has_next %}
+        <div class="container">
+            <ul class="pagination">
+                {% if answers.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ answers.previous_page_number }}">Back</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ answers.previous_page_number }}">{{ answers.previous_page_number }}</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Back</a>
+                    </li>
+                {% endif %}
+
+                <li class="page-item active">
+                    <a class="page-link" href="#">{{ answers.number }} <span class="sr-only">(current)</span></a>
+                </li>
+
+                {% if answers.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ answers.next_page_number }}">{{ answers.next_page_number }}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ answers.next_page_number }}">Next</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+
+  {% endblock%}

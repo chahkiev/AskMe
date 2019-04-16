@@ -19,13 +19,15 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    url('^$', views.main, name='main'),
+
+    url('index/$', views.index, name='index'),
     path('login/', views.login, name='login'),
-    path('singup/', views.singup, name='singup'),
+    path('signup/', views.signup, name='singup'),
     path('settings/', views.settings, name='settings'),
     path('ask/', views.ask, name='ask'),
     url(r'^tag/(?P<tag>.*)/$', views.tag, name='tag'),
-    url(r'^question/(?P<question>.*)/$', views.question, name='question'),
+    # url(r'^question/(?P<question>.*)/$', views.question, name='question'),
+    url(r'^question/(?P<question_id>[0-9]+)/$', views.question, name='question'),
     url(r'^(\d+)/$', views.index, name='index'),
-
 ]

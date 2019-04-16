@@ -15,65 +15,51 @@
     </div>
     <!-- New questions && Hot questions -->
 
-    {% for question in questions_on_page %}
+    {% for question in questions %}
         {% include 'question/question_item.html' %}
     {% endfor %}
 
-
-    <div class="col">
-      <a>Всего страниц: {{ questions_on_page.paginator.num_pages }}</a>
-    </div>
-    <div class="container">
-      <div class="row">
-        <ul class="paginator">
-          {% if questions_on_page.has_previous%}
-            <li class="arrow"><a href="/{{ questions_on_page.previous_page_number}}">&laquo;</a></li>
-          {% else %}
-            <li class="unavailable"><a href="">&laquo;</a></li>
-          {% endif %}
-
-          <!-- {% for page in questions_on_page.paginator.page_range %}
-            {% if page == questions_on_page.number %}
-              <li class="current"><a href="/{{ page }}">{{ page }}</a></li>
-            {% else %}
-              <li><a href="/{{ page }}">{{ page }}</a></li>
-            {% endif %}
-          {% endfor %} -->
-
-            <li class="current_page"><a href="">{{ current_page}}</a></li>
-
-            {% if questions_on_page.has_next%}
-              <li class="arrow"><a href="/{{ questions_on_page.next_page_number}}">&raquo;</a></li>
-            {% else %}
-              <li class="unavailable"><a href="">&raquo;</a></li>
-            {% endif %}
-          </ul>
-        </div>
-      </div>
-
-    <!-- Кнопки переключения страниц -->
-    <!-- <div class="container">
-      <div class="row">
-        <div class="col-ld-6">
-          <div class="row">
-            <div class="col page_number">
-              <a href="#"><h6>1</h6></a>
-            </div>
-              <div class="col page_number">
-              </div>
-              <div class="col page_number">
-                <a href="#"><h6>3</h6></a>
-              </div>
-              <div class="col page_number">
-                <a href="#"><h6>...</h6></a>
-              </div>
-              <div class="col page_number">
-                <a href="#"><h6>51</h6></a>
-              </div>
-            </div>
-        </div>
-      </div>
-    </div> -->
-    <!--Кнопки переключения страниц -->
-
 {% endblock%}
+
+{% block footer %}
+    <div class="col">
+        <a>Всего страниц: {{ questions.paginator.num_pages }}</a>
+    </div>
+    <br>
+    {% if questions.has_next %}
+        <div class="container">
+            <ul class="pagination">
+                {% if questions.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ questions.previous_page_number }}">Back</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ questions.previous_page_number }}">{{ questions.previous_page_number }}</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Back</a>
+                    </li>
+                {% endif %}
+
+                <li class="page-item active">
+                    <a class="page-link" href="#">{{ questions.number }} <span class="sr-only">(current)</span></a>
+                </li>
+
+                {% if questions.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ questions.next_page_number }}">{{ questions.next_page_number }}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ questions.next_page_number }}">Next</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+        <br><br>
+    {% endif %}
+{% endblock %}
