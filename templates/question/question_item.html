@@ -5,18 +5,12 @@
     <br>
     <div class="col-lg-2">
       <div class="col">
-        <img src="{% static 'img/jobs.jpg' %}" class="mr-3" alt="..." width="80" height="100">
+        <!-- <img src="{% static 'img/jobs.jpg' %}" class="mr-3" alt="..." width="80" height="100"> -->
+        <img src="/media/{{question.author.upload}}" class="mr-3" alt="..." width="80" height="100">
       </div>
       <br>
-      <!-- <div class="col">
 
-        <div class="row">
-        <img src="{% static 'img/dislike.svg' %}" width="25" height="25">
-        <a href="#">5</a>
-        <img src="{% static 'img/like.svg' %}" width="25" height="25">
-</div>
-      </div> -->
-      <div class="container">
+      <!-- <div class="container">
           <div class="row">
             <div class="col likes">
              <button type="button" class="btn btn-success btn-sm" data-id="{{ question.id }}" data-type="question" data-action="like" title="Like">
@@ -30,44 +24,60 @@
              </button>
            </div>
           </div>
-      </div>
-    <!-- <div class="likes centeder">
-     <button type="button" class="btn btn-success btn-sm" data-id="{{ question.id }}" data-type="question" data-action="like" title="Like">
-         <span class="glyphicon glyphicon-thumbs-up"></span>
-         <span data-count="like">5</span>
-     </button>
+      </div> -->
 
-     <button type="button" class="btn btn-danger btn-sm" data-id="{{ question.id }}" data-type="question" data-action="dislike" title="Dislike">
-         <span class="glyphicon glyphicon-thumbs-down"></span>
-         <span data-count="dislike">3</span>
-     </button>
-   </div> -->
+
+      {% if user.is_authenticated %}
+      <div class="container">
+          <div class="row">
+
+          <div class="col likes">
+              <button type="button" class="btn btn-success btn-sm" data-id="{{ question.id }}" data-type="question" data-action="like" title="Like">
+                  <span class="glyphicon glyphicon-thumbs-up"></span>
+                  <span data-count="like">{{ question.votes.likes.count }}</span>
+              </button>
+
+              <button type="button" class="btn btn-danger btn-sm dislike-color" data-id="{{ question.id }}" data-type="question" data-action="dislike" title="Dislike">
+                  <span class="glyphicon glyphicon-thumbs-down"></span>
+                  <span data-count="dislike">{{ question.votes.dislikes.count }}</span>
+              </button>
+          </div>
+
+        </div>
+    </div>
+      {% endif %}
 
 
     </div>
     <div class="col-lg-10">
       <div class="col">
-        <h3>
-          <a href="{% url 'question'  1 %}">
-            How to make travel easier?
-          </a>
-        </h3>
+          <a href="{% url 'question' question.id %}"><h4 class="media-heading">{{ question.title }}</h4></a>
+          <small >
+              <i style="font-size: small; font-weight: bold">{{ question.author.first_name }} {{ question.author.last_name }}</i>
+              <i style="font-size: small">Posted {{ question.date }}</i>
+          </small>
       </div>
+
+
       <div class="col">
-        <h4>The Boring Company Илона Маска открыла первый подземный тоннель — под Лос-Анджелесом...</h4>
+        <h4>{{ question.text | truncatechars:300 }}</h4>
       </div>
       <br>
       <div class="row">
         <div class="col-lg-5 text-center">
-          <a href=""><h5>Answers(3)</h5></a>
+          <a href=""><h5>Answers( )</h5></a>
         </div>
-        <div class="col-lg-7">
+         <div class="col-lg-7">
           <div class="row">
-            <h5>Tags:&nbsp;&nbsp;</h5>
-            <a href=""><h5>BoringCompany,&nbsp;&nbsp;</h5></a>
-            <a href=""><h5>Tesla &nbsp;</h5></a>
-          </div>
-        </div>
+        <h5>Tags:&nbsp;&nbsp;</h5>
+        {% for tag in question.tags.all %}
+            <a href="{% url 'tag' tag.name %}" style="text-decoration: none">
+                {{ tag.name }} &nbsp;
+            </a>
+        {% endfor %}
+
+      </div>
+    </div>
       </div>
 
     </div>

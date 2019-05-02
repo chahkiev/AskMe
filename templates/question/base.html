@@ -16,6 +16,33 @@
     {% include 'question/navbar.html' %}
 
     <div class="container">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-12">
+              {% block headerName %}
+                      <h3>
+                          <ul class="nav nav-pills">
+                              {% for header in headers %}
+                                  {% if header.is_active %}
+                                        &nbsp;&nbsp;
+                                      <h3><li class="active"><a href="{% url header.url %}" > {{ header.title }} </a></li></h3>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  {% else %}
+                                        &nbsp;&nbsp;
+                                      <h3><li><a href="{% url header.url %}" > {{ header.title }} </a></li></h3>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  {% endif %}
+                              {% endfor %}
+                          </ul>
+                      </h3>
+              {% endblock %}
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <div class="container">
       <div class="row">
         <div class="col-lg-9">
           <br>

@@ -6,20 +6,43 @@
     <div class="col-lg-2">
       <div class="col">
         <img src="{% static 'img/mask.jpg' %}" class="mr-3" alt="..." width="80" height="100">
+        <!-- <img src="/media/{{ answer.author.upload }}" class="avatar-on-post"> -->
       </div>
       <br>
-      <div class="col">
+      <!-- <div class="col">
         <a href="#">5</a>
-      </div>
+      </div> -->
+
+      {% if user.is_authenticated %}
+          <div class="col likes">
+              <button type="button" class="btn btn-success btn-sm" data-id="{{ answer.id }}" data-type="answer" data-action="like" title="Like">
+                  <span class="glyphicon glyphicon-thumbs-up"></span>
+                  <span data-count="like">{{ answer.votes.likes.count }}</span>
+              </button>
+
+              <button type="button" class="btn btn-danger btn-sm" data-id="{{ answer.id }}" data-type="answer" data-action="dislike" title="Dislike">
+                  <span class="glyphicon glyphicon-thumbs-down"></span>
+                  <span data-count="dislike">{{ answer.votes.dislikes.count }}</span>
+              </button>
+          </div>
+      {% endif %}
+
+
     </div>
     <div class="col-lg-10">
-      <!-- <div class="col">
-        <a href=""><h3>How to make travel easier?</h3></a>
-      </div> -->
       <div class="col">
-        <h4>The Boring Company Илона Маска открыла первый подземный тоннель — под Лос-Анджелесом..aaa aa aaa aa aaa aa aaa aa bb bbb bb bbb bb</h4>
+        <small >
+            <i style="font-size: small; font-weight: bold">{{ answer.author.first_name}} {{ answer.author.last_name }}</i>
+            <i style="font-size: small">Posted {{ answer.date }}</i>
+        </small>
+        <br><br>
+
+        <h4><p class="content">{{ answer.text }}</p></h4>
+        <br>
+
+        <!-- <h4>The Boring Company Илона Маска открыла первый подземный тоннель — под Лос-Анджелесом..aaa aa aaa aa aaa aa aaa aa bb bbb bb bbb bb</h4> -->
       </div>
-      <br>
+      <!-- <br>
       <div class="container">
         <div class="row">
           <div class="col-lg-3">
@@ -31,7 +54,7 @@
             </form>
           </div>
         </div>
-      </div>
+      </div> -->
 
     </div>
   </div>

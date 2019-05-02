@@ -16,15 +16,14 @@
     <!-- New questions && Hot questions -->
 
         {% include 'question/question_item.html' %}
-        <hr class="orange accent-2 mt-0 d-inline-block mx-auto" style="width:830px;"></hr>
-        <form>
-          <div class="form-group">
-              <textarea cols="90" rows="5" placeholder="Enter yout answer"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Answer</button>
-      </form>
-      </br>
+        <br>
+            <a href="/question/{{ question.id }}/answer/"><button type="button" class="btn btn-info">ANSWER!</button></a>
+        <br>
+        <br>
+
       <hr class="orange accent-2 mt-0 d-inline-block mx-auto" style="width:830px;"></hr>
+
+      <h2 align="center">Answers</h2> <br>
 
         {% for answer in answers %}
             {% include 'question/answer_item.html' %}
@@ -75,5 +74,4 @@
             </ul>
         </div>
     {% endif %}
-
   {% endblock%}

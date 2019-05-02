@@ -13,21 +13,28 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.conf.urls import url
 from django.urls import path
-from . import views
+from question.views import *
+
+from .models import LikeDislike
+from question.models import Question, Answer
 
 urlpatterns = [
-    url('^$', views.main, name='main'),
+    url(r'^$', main, name='main'),
 
-    url('index/$', views.index, name='index'),
-    path('login/', views.login, name='login'),
-    path('signup/', views.signup, name='singup'),
-    path('settings/', views.settings, name='settings'),
-    path('ask/', views.ask, name='ask'),
-    url(r'^tag/(?P<tag>.*)/$', views.tag, name='tag'),
-    # url(r'^question/(?P<question>.*)/$', views.question, name='question'),
-    url(r'^question/(?P<question_id>[0-9]+)/$', views.question, name='question'),
-    url(r'^(\d+)/$', views.index, name='index'),
+    url(r'^index/$', index, name='index'),
+    url(r'^hot/$', hot, name='hot'),
+    url(r'^tag/(?P<tag>.*)/$', tag, name='tag'),
+    url(r'^question/(?P<question_id>[0-9]+)/$', question, name='question'),
+    url(r'^question/(?P<question_id>[0-9]+)/answer/$', new_answer, name='new_answer'),
+
+    url(r'^signin/$', signin, name='signin'),
+    url(r'^signup/$', signup, name='signup'),
+    url(r'^signout/$', signout, name='signout'),
+
+    url(r'^settings/$', settings, name='settings'),
+    url(r'^ask/$', new_question, name='new_question'),
+
+    # url(r'^(\d+)/$', index, name='index'),
 ]
