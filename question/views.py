@@ -166,6 +166,14 @@ def new_answer(request, question_id):
 		raise Http404
 
 
+def profile(request, username):
+	user = User.objects.by_username(username)
+	if user is not None:
+		return render(request, 'question/profile.html', {'profile': user})
+	else:
+		raise Http404
+
+
 def paginator(request, objects_list):
         paginator = Paginator(objects_list, 10)
         page = request.GET.get('page')

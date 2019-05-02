@@ -36,5 +36,7 @@ urlpatterns = [
     url(r'^settings/$', settings, name='settings'),
     url(r'^ask/$', new_question, name='new_question'),
 
+    url(r'^user/(?P<username>[a-zA-Zа-яА-Я_\-\.0-9]+?)$', profile, name='profile'),
+
     # url(r'^(\d+)/$', index, name='index'),
 ]

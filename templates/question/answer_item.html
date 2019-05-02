@@ -5,7 +5,10 @@
     <br>
     <div class="col-lg-2">
       <div class="col">
-        <img src="{% static 'img/mask.jpg' %}" class="mr-3" alt="..." width="80" height="100">
+        <!-- <img src="{% static 'img/mask.jpg' %}" class="mr-3" alt="..." width="80" height="100"> -->
+        <a href="{% url 'profile' answer.author.username %}">
+            <img src="/media/{{answer.author.upload}}" class="mr-3" alt="..." width="80" height="100">
+        </a>
         <!-- <img src="/media/{{ answer.author.upload }}" class="avatar-on-post"> -->
       </div>
       <br>

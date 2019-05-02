@@ -23,35 +23,6 @@ class User(AbstractUser):
         return self.username
 
 
-# functions for correct uploading avatar
-# def rotate_image(filepath):
-#     try:
-#         image = Image.open(filepath)
-#         for orientation in ExifTags.TAGS.keys():
-#             if ExifTags.TAGS[orientation] == 'Orientation':
-#                 break
-#         exif = dict(image._getexif().items())
-#
-#         if exif[orientation] == 3:
-#             image = image.rotate(180, expand=True)
-#         elif exif[orientation] == 6:
-#             image = image.rotate(270, expand=True)
-#         elif exif[orientation] == 8:
-#             image = image.rotate(90, expand=True)
-#         image.save(filepath)
-#         image.close()
-#     except (AttributeError, KeyError, IndexError):
-#         pass
-
-# @receiver(post_save, sender=User, dispatch_uid="update_image_profile")
-# def update_image(sender, instance, **kwargs):
-#     if instance.upload:
-#         BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-#         fullpath = BASE_DIR + instance.upload.url
-#         rotate_image(fullpath)
-
-
-
 class Tag(models.Model):
     name = models.CharField(max_length=20, default="404", verbose_name="Question's Tag")
 

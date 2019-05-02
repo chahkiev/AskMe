@@ -6,7 +6,9 @@
     <div class="col-lg-2">
       <div class="col">
         <!-- <img src="{% static 'img/jobs.jpg' %}" class="mr-3" alt="..." width="80" height="100"> -->
-        <img src="/media/{{question.author.upload}}" class="mr-3" alt="..." width="80" height="100">
+        <a href="{% url 'profile' question.author.username %}">
+            <img src="/media/{{question.author.upload}}" class="mr-3" alt="..." width="80" height="100">
+        </a> <br><br>
       </div>
       <br>
 
