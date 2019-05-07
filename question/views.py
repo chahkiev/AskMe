@@ -8,11 +8,48 @@ from django.views import View
 from question.models import *
 from question.forms import UserRegistrationForm, UserLoginForm, NewQuestionForm, UserSettingsForm, AnswerForm
 
+from faker import Faker
+import random
 
 def main(request):
     return redirect('index')
 
 def index(request):
+    fake = Faker()
+
+    # for i in range(20000):
+    #     user = User()
+    #     user.first_name = fake.name()
+    #     user.last_name = fake.name() + 'ich'
+    #     user.username = fake.name() + str(random.randint(1,1000))
+    #     user.email = user.username + '@mail.ru'
+    #     user.set_password('Qwerty12345!')
+    #     user.save()
+    #     print(user.first_name,' ', user.last_name,' ', user.username)
+    #     print(i)
+
+        # tag = Tag()
+        # tag.name = fake.text()[1:7]
+        # tag.save()
+        # print(i, '    ', tag.name)
+
+        # question = Question()
+        # question.author = User.objects.get(id=random.randint(2,50))
+        # question.title = fake.text()[1:30]
+        # question.text = fake.text()[1:50]
+        # question.tag = Tag.objects.get(id=random.randint(2,50))
+        # question.save()
+        # t1 = Tag.objects.get(id=random.randint(2,50))
+        # question.tags.add(t1)
+        # print(i, ' ', question.title, ' ', question.text,' ', question.tags,' ',question.tag)
+
+        # answer = Answer()
+        # answer.text = fake.text()[1:30]
+        # answer.author = User.objects.get(id=random.randint(2,50))
+        # answer.question = Question.objects.get(id=random.randint(2,50))
+        # answer.save()
+        # print(answer.text,' ',answer.author,' ',answer.question)
+
     # question = [0,1,2,3,4,5,6,7,8,9,
     #             0,1,2,3,4,5,6,7,8,9,
     #             0,1,2,3,4,5,6,7,8,9,
@@ -23,21 +60,21 @@ def index(request):
     # return render(request, 'question/index.html',
     #                 {'questions' : paginator(request, objects_list = question)
     #                 })
-	return render(request, 'question/index.html',
+    return render(request, 'question/index.html',
                   {'questions': paginator(request, objects_list=Question.objects.get_new()),
 				   'headers': header_content("new")
 				   })
 
 
 def hot(request):
-	return render(request, 'question/index.html',
+    return render(request, 'question/index.html',
 				  {'questions': paginator(request, objects_list=Question.objects.get_hot()),
 				   'headers': header_content("hot")
 				   })
 
 
 def tag(request, tag):
-	return render(request, 'question/index.html',
+    return render(request, 'question/index.html',
 				  {'questions': paginator(request, objects_list=Tag.objects.get_by_tag(tag_name=tag)),
 				   'headers': header_content("tag", tag_name=tag)
 				   })
