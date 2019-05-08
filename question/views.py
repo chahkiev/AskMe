@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response, redirect, get_object_or_404
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, JsonResponse
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -184,7 +184,7 @@ def new_question(request):
 
 
 @login_required(login_url='/signin/')
-def new_answer(request, question_id):
+def new_answer1(request, question_id):
 	if Question.objects.filter(id=question_id).exists():
 		if request.method == 'POST':
 			form = AnswerForm(request.POST)
@@ -202,6 +202,30 @@ def new_answer(request, question_id):
 	else:
 		raise Http404
 
+@login_required(login_url="/signin")
+def new_answer(request, question_id):
+    if Question.objects.filter(id=question_id).exists():
+        if request.method == 'POST':
+            form = AnswerForm(request.POST)
+            if form.is_valid():
+                answeredQuestion = Question.objects.get_by_id(question_id)[0]
+                answer = Answer.objects.create(author=request.user,
+                                date=timezone.now(),
+                                text=form.cleaned_data['text'],
+                                question_id=answeredQuestion.id)
+                answer.save()
+
+                current_answers_number = answeredQuestion.answers_number
+                answeredQuestion.answers_number = current_answers_number + 1
+                answeredQuestion.save()
+                return redirect('/question/{}/#{}'.format(question_id, answer.id))
+        else:
+            form = AnswerForm()
+        return render(request, 'question/answer.html', {'form': form})
+    else:
+        raise Http404
+
+
 
 def profile(request, username):
 	user = User.objects.by_username(username)
@@ -209,6 +233,56 @@ def profile(request, username):
 		return render(request, 'question/profile.html', {'profile': user})
 	else:
 		raise Http404
+
+
+@login_required
+def like_question(request):
+    question_id = request.POST.get('question_id', '')
+    question = Question.objects.filter(id=question_id).first()
+    if not question:
+        print({"status": "error"})
+        return JsonResponse({"status": "error"})
+
+    # article.likes += 1
+    # article.save()
+    like_dislike = LikeDislikeQuestion()
+    like_dislike.user = request.user
+    like_dislike.question = Question.objects.filter(id=question_id).first()
+    like_dislike.vote = 1                 #vote in LikeDislike table
+    like_dislike.save()
+
+    current_likes = question.likes
+    question.likes = current_likes + 1       #number of likes of Question
+    current_rating = question.rating
+    question.rating = current_rating + 1
+    question.save()
+    print({"status": "ok"})
+    return JsonResponse({"status": "ok"})
+
+
+@login_required
+def dislike_question(request):
+    question_id = request.POST.get('question_id', '')
+    question = Question.objects.filter(id=question_id).first()
+    if not question:
+        print({"status": "error"})
+        return JsonResponse({"status": "error"})
+
+    # article.likes += 1
+    # article.save()
+    like_dislike = LikeDislikeQuestion()
+    like_dislike.user = request.user
+    like_dislike.question = Question.objects.filter(id=question_id).first()
+    like_dislike.vote = -1             #vote in LikeDislike table
+    like_dislike.save()
+
+    current_likes = question.dislikes
+    question.dislikes = current_likes + 1  #number of dislikes of Question
+    current_rating = question.rating
+    question.rating = current_rating - 1
+    question.save()
+    print({"status": "ok"})
+    return JsonResponse({"status": "ok"})
 
 
 def paginator(request, objects_list):

@@ -12,36 +12,22 @@
       </div>
       <br>
 
-      <!-- <div class="container">
-          <div class="row">
-            <div class="col likes">
-             <button type="button" class="btn btn-success btn-sm" data-id="{{ question.id }}" data-type="question" data-action="like" title="Like">
-                 <span class="glyphicon glyphicon-thumbs-up"></span>
-                 <span data-count="like">5</span>
-             </button>
-
-             <button type="button" class="btn btn-danger btn-sm" data-id="{{ question.id }}" data-type="question" data-action="dislike" title="Dislike">
-                 <span class="glyphicon glyphicon-thumbs-down"></span>
-                 <span data-count="dislike">3</span>
-             </button>
-           </div>
-          </div>
-      </div> -->
-
 
       {% if user.is_authenticated %}
       <div class="container">
           <div class="row">
 
           <div class="col likes">
-              <button type="button" class="btn btn-success btn-sm" data-id="{{ question.id }}" data-type="question" data-action="like" title="Like">
+              <button type="button" class="btn btn-success btn-sm js-like-question" data-question_id="{{ question.id }}" data-type="question" title="Like">
                   <span class="glyphicon glyphicon-thumbs-up"></span>
-                  <span data-count="like">7</span>
+                  <span data-count="like">{{ question.likes }}</span>
+                  {% csrf_token %}
               </button>
 
-              <button type="button" class="btn btn-danger btn-sm dislike-color" data-id="{{ question.id }}" data-type="question" data-action="dislike" title="Dislike">
+              <button type="button" class="btn btn-danger btn-sm dislike-color js-dislike-question" data-question_id="{{ question.id }}" data-type="question" data-action="dislike" title="Dislike">
                   <span class="glyphicon glyphicon-thumbs-down"></span>
-                  <span data-count="dislike">6</span>
+                  <span data-count="dislike">{{ question.dislikes }}</span>
+                  {% csrf_token %}
               </button>
           </div>
 
@@ -67,7 +53,7 @@
       <br>
       <div class="row">
         <div class="col-lg-5 text-center">
-          <a href=""><h5>Answers( )</h5></a>
+          <a href=""><h5>Answers({{ question.answers_number }})</h5></a>
         </div>
          <div class="col-lg-7">
           <div class="row">

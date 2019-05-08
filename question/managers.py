@@ -9,7 +9,7 @@ class UserManager(UserManager):
         return self.all().filter(username=username).first()
 
     def by_rating(self):
-        return self.order_by('-rating')
+        return self.order_by('rating')
 
     def by_first_name(self):
         return self.order_by('first_name')
@@ -49,5 +49,5 @@ class TagManager(models.Manager):
         return self.annotate(question_count=Count('questions')).order_by('-question_count')
 
 
-class LikeDislikeManager(models.Manager):
+class LikeDislikeQuestionManager(models.Manager):
     pass

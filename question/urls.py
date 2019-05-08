@@ -17,8 +17,7 @@ from django.conf.urls import url
 from django.urls import path
 from question.views import *
 
-from .models import LikeDislike
-from question.models import Question, Answer
+from question.models import Question, Answer, LikeDislikeQuestion
 
 urlpatterns = [
     url(r'^$', main, name='main'),
@@ -35,6 +34,10 @@ urlpatterns = [
 
     url(r'^settings/$', settings, name='settings'),
     url(r'^ask/$', new_question, name='new_question'),
+
+    url(r'^like_question/$', like_question, name='like_question'),
+    url(r'^dislike_question/$', dislike_question, name='dislike_question'),
+
 
     url(r'^user/(?P<username>[a-zA-Zа-яА-Я _\-\.0-9]+?)$', profile, name='profile'),
 

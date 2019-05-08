@@ -8,7 +8,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 # from PIL import Image, ExifTags
 
-from question.managers import UserManager, TagManager, QuestionManager, AnswerManager, LikeDislikeManager
+from question.managers import UserManager, TagManager, QuestionManager, AnswerManager, LikeDislikeQuestionManager
 
 
 # AUTH_USER_MODEL set in settings
@@ -32,18 +32,6 @@ class Tag(models.Model):
         return self.name
 
 
-class LikeDislike(models.Model):
-    LIKE = 1
-    DISLIKE = -1
-
-    user = models.ForeignKey(User, verbose_name=("User"), on_delete=models.CASCADE)
-
-    objects = LikeDislikeManager()
-
-    def __str__(self):
-        return self.user.username + " liked"
-
-
 class Question(models.Model):
     author = models.ForeignKey(User, verbose_name="Question's Owner", on_delete=models.CASCADE)
     title = models.CharField(max_length=50, verbose_name="Question's Header")
@@ -52,6 +40,10 @@ class Question(models.Model):
     rating = models.IntegerField(default=0, null=False, verbose_name="Question's Rating")
     is_active = models.BooleanField(default=True, verbose_name="Question's Availability")
     tags = models.ManyToManyField(Tag, default=True, related_name='questions', verbose_name="Question's Tags")
+    likes = models.IntegerField(default=0, verbose_name="Question's Likes")
+    dislikes = models.IntegerField(default=0, verbose_name="Question's Dislikes")
+    rating = models.IntegerField(default=0, verbose_name="Rating")
+    answers_number = models.IntegerField(default=0, verbose_name="Answer's Number")
 
     objects = QuestionManager()
 
@@ -64,9 +56,25 @@ class Answer(models.Model):
     date = models.DateTimeField(default=timezone.now, verbose_name="Answer's Date")
     question = models.ForeignKey(Question, related_name='answers', verbose_name="Answer's Question", on_delete=models.CASCADE)
     text = models.TextField(verbose_name="Answer's Content")
-    rating = models.IntegerField(default=0, null=False, verbose_name="Answer's Rating")
+    likes = models.IntegerField(default=0, verbose_name="Answers's Likes")
+    dislikes = models.IntegerField(default=0, verbose_name="Answers's Dislikes")
+    rating = models.IntegerField(default=0, verbose_name="Rating")
 
     objects = AnswerManager()
 
     def __str__(self):
         return self.text
+
+
+class LikeDislikeQuestion(models.Model):
+    LIKE = 1
+    DISLIKE = -1
+
+    user = models.ForeignKey(User, verbose_name=("User"), on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, verbose_name=("Question"), on_delete=models.CASCADE)
+    vote = models.IntegerField(verbose_name="Vote", default=0)
+
+    objects = LikeDislikeQuestionManager()
+
+    def __str__(self):
+        return self.user.username + " liked"
