@@ -60,14 +60,9 @@ $ sudo apt-get install -y postgresql && \
                 python-psycopg2 && \
                 libpq-dev 
 
-$ sudo -u postgres psql postgres
-postgres=# \password postgres
-postgres=# create user askme_admin with password 'askme';
-postgres=# alter role askme_admin set client_encoding to 'utf8';
-postgres=# alter role askme_admin set default_transaction_isolation to 'read committed';
-postgres=# alter role askme_admin set timezone to 'UTC';
-postgres=# create database askme owner askme_admin;
-postgres=# \q
+$ sudo -u postgres psql -f CREATE DATABASE askme; \
+                           CREATE USER askme_admin WITH password '12345'; \
+                           GRANT ALL privileges ON DATABASE askme TO askme_admin;
 ```
 
 Django app:
@@ -80,8 +75,19 @@ $ python3 -mvenv venv
 $ source venv/bin/activate
 $ pip3 install -r requirements.txt
 $ python3 manage.py makemigrations
+$ python3 manage.py makemigrations question
 $ python3 manage.py migrate
 $ python3 manage.py runserver
+```
+
+OR:
+
+```bash
+$ cd ~
+$ git clone https://github.com/chahkiev/AskMe.git
+$ cd AskMe/deploy
+$ bash ./createDB.sh
+$ bash ./runApp.sh
 ```
 
 ### Стек технологий:
